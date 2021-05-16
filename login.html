@@ -54,7 +54,6 @@
                         placeholder="Ingresa tu contraseña">
                         <small id="lbl_contrasena" class="form-text text-danger">Debe ingresar contraseña</small>
                     </div>
-                    <a id="btn_prueba" href="indicadores.html" class="btn btn-primary" role="button" aria-pressed="true">Iniciar sesión 1</a>
                     <button id="btn_ingreso" type="button" class="btn btn-primary">Iniciar Sesión</button>
                 </form>
 
@@ -68,6 +67,7 @@
       // Ocultar etiquetas
         $("#lbl_rut").css("visibility", "hidden");
         $("#lbl_contrasena").css("visibility", "hidden");
+       
 
     $("#btn_ingreso").click(function(){
       rut = $("#txt_rut").val();
@@ -78,28 +78,32 @@
           $("#lbl_rut").css("visibility", "visible");
           $("#txt_rut").css( "border", "3px solid red");
           validador = false;
-        } else{
+      } else{
             $("#lbl_rut").css("visibility", "hidden");
             $("#txt_rut").css( "border", "3px solid green");
-        }
+      }
         
-        if(contrasena == ""){
+     if(contrasena == ""){
             $("#lbl_contrasena").css("visibility", "visible");
             $("#txt_contrasena").css( "border", "3px solid red");
             validador = false;
-        } else{
-            $('#lbl_contrasena').css("visibility", "hidden");
+     } else{
+            $("#lbl_contrasena").css("visibility", "hidden");
             $("#txt_contrasena").css( "border", "3px solid green");
-      }
+    }
 
-      if(validador){
+    if(validador){
         $("#lbl_ingreso").text("Bienvenid@");
         $("#lbl_ingreso").addClass("text-success");
+
+        window.location="indicadores.html";    
 
       } else{
         $("#lbl_ingreso").css("visibility", "hidden");
       }
     });
+
+ 
   </script>
 
 </body>
