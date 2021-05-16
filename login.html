@@ -10,9 +10,12 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
         crossorigin="anonymous"></script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>        
+
     <title> UniBankChile - Inicio </title>
 
-    <link type="text/css" rel="stylesheet" href="estilo.css" />
+    <link type="text/css" rel="stylesheet" href="css/estilo.css" />
 </head>
 
 <body>
@@ -21,7 +24,7 @@
     <nav class="navbar navbar-rosa">
         <div class="container">
             <a class="navbar-brand" href="index.html">
-                <img src="imagenes/Captura.PNG" height="80" width="250">
+                <img src="imagenes/Captura.PNG" height="90" width="300">
             </a>
             <form class="my-2 my-lg-0">
                 <a href="login.html" class="btn btn-outline-primary my-2 my-sm-0" role="button"
@@ -39,23 +42,65 @@
         <div class="card-body">
             <div class="div-formulario">
                 <form>
-                    <div class="form-group">
-                        <label for="formGroupExampleInput">RUT:</label>
-                        <input type="text" class="form-control" id="formGroupExampleInput"
+                    <div class="form-group row">
+                        <label>RUT (*):</label>
+                        <input type="text" class="form-control" id="txt_rut"
                             placeholder="Ingresa tu RUT (12345678-9)">
+                        <small id="lbl_rut" class="form-text text-danger">Debe ingresar el rut</small>
                     </div>
-                    <div class="form-group">
-                        <label for="exampleInputPassword1">Password</label>
-                        <input type="password" class="form-control" id="exampleInputPassword1"
+                    <div class="form-group row">
+                        <label>Password (*):</label>
+                        <input type="password" class="form-control" id="txt_contrasena"
                         placeholder="Ingresa tu contraseña">
+                        <small id="lbl_contrasena" class="form-text text-danger">Debe ingresar contraseña</small>
                     </div>
-                    <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
+                    <a id="btn_prueba" href="indicadores.html" class="btn btn-primary" role="button" aria-pressed="true">Iniciar sesión 1</a>
+                    <button id="btn_ingreso" type="button" class="btn btn-primary">Iniciar Sesión</button>
                 </form>
+
+                <label id="lbl_ingreso"></label>
             </div>
         </div>
       </div>
     <!--Fin Formulario Login-->
 
+    <script>
+      // Ocultar etiquetas
+        $("#lbl_rut").css("visibility", "hidden");
+        $("#lbl_contrasena").css("visibility", "hidden");
+
+    $("#btn_ingreso").click(function(){
+      rut = $("#txt_rut").val();
+      contrasena = $("#txt_contrasena").val();
+      validador = true;
+
+      if(rut == ""){ 
+          $("#lbl_rut").css("visibility", "visible");
+          $("#txt_rut").css( "border", "3px solid red");
+          validador = false;
+        } else{
+            $("#lbl_rut").css("visibility", "hidden");
+            $("#txt_rut").css( "border", "3px solid green");
+        }
+        
+        if(contrasena == ""){
+            $("#lbl_contrasena").css("visibility", "visible");
+            $("#txt_contrasena").css( "border", "3px solid red");
+            validador = false;
+        } else{
+            $('#lbl_contrasena').css("visibility", "hidden");
+            $("#txt_contrasena").css( "border", "3px solid green");
+      }
+
+      if(validador){
+        $("#lbl_ingreso").text("Bienvenid@");
+        $("#lbl_ingreso").addClass("text-success");
+
+      } else{
+        $("#lbl_ingreso").css("visibility", "hidden");
+      }
+    });
+  </script>
 
 </body>
 

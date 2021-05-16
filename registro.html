@@ -10,9 +10,12 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
     crossorigin="anonymous"></script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
   <title> UniBankChile - Inicio </title>
 
-  <link type="text/css" rel="stylesheet" href="estilo.css" />
+  <link type="text/css" rel="stylesheet" href="css/estilo.css" />
 </head>
 
 <body>
@@ -21,7 +24,7 @@
   <nav class="navbar navbar-rosa">
     <div class="container">
       <a class="navbar-brand" href="index.html">
-        <img src="imagenes/Captura.PNG" height="80" width="250">
+        <img src="imagenes/Captura.PNG" height="90" width="300">
       </a>
       <form class="my-2 my-lg-0">
         <a href="login.html" class="btn btn-outline-primary my-2 my-sm-0" role="button" aria-pressed="true">Iniciar sesión</a>
@@ -30,51 +33,151 @@
     </div>
   </nav>
   <!--Fin NavBar-->
-</body>
 
-    <!--Inicio Formulario Login-->
+    <!--Inicio Formulario Registro-->
     <div class="card mb-3">
     <div class="card-header">Formulario de Registro</div>
+    <div class="card-body">
     <div class="div-formulario">
-        <form>
-            <div class="form-group">
-                <label for="formGroupExampleInput">Rut:</label>
-                <input type="text" class="form-control" id="formGroupExampleInput"
+        <form id="formRegistro">
+            <div class="form-group row">
+                <label>Rut (*):</label>
+                <input type="text" class="form-control" id="txt_rut"
                     placeholder="Ingresa tu rut (12345678-9)">
+                <small id="lbl_rut" class="form-text text-danger">Debe ingresar el rut</small>
             </div>
-            <div class="form-group">
-                <label for="formGroupExampleInput2">Nombre:</label>
-                <input type="text" class="form-control" id="formGroupExampleInput2"
+            <div class="form-group row">
+                <label>Nombre (*):</label>
+                <input type="text" class="form-control" id="txt_nombre"
                     placeholder="Ingresa tu nombre">
+                  <small id="lbl_nombre" class="form-text text-danger">Debe ingresar el nombre</small>
             </div>
-            <div class="form-group">
-                <label for="formGroupExampleInput2">Apellido Paterno:</label>
-                <input type="text" class="form-control" id="formGroupExampleInput2"
-                    placeholder="Ingrea tu apellido paterno">
+            <div class="form-group row">
+                <label>Apellido Paterno (*):</label>
+                <input type="text" class="form-control" id="txt_apellidop"
+                    placeholder="Ingresa tu apellido paterno">
+                  <small id="lbl_apellidop" class="form-text text-danger">Debe ingresar el apellido paterno</small>
             </div>
-            <div class="form-group">
-                <label for="formGroupExampleInput2">Apellido Materno:</label>
-                <input type="text" class="form-control" id="formGroupExampleInput2"
+            <div class="form-group row">
+                <label>Apellido Materno (*):</label>
+                <input type="text" class="form-control" id="txt_apellidom"
                     placeholder="Ingresa tu apellido materno">
+                    <small id="lbl_apellidom" class="form-text text-danger">Debe ingresar el apellido materno</small>
             </div>
-            <div class="form-group">
-                <label for="exampleInputEmail1">Correo electrónico</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+            <div class="form-group row">
+                <label for="exampleInputEmail1">Correo electrónico (*):</label>
+                <input type="email" class="form-control" id="txt_correo">
                 <small id="emailHelp" class="form-text text-muted">Ej: juanperez@correo.com</small>
+                <small id="lbl_correo" class="form-text text-danger">Debe ingresar el correo electrónico</small>
             </div>
-            <div class="form-group">
-                <label for="formGroupExampleInput2">Tipo de Cuenta:</label>
-                <select class="custom-select custom-select">
+            <div class="form-group row">
+                <label>Tipo de Cuenta (*):</label>
+                <select class="custom-select custom-select" id="txt_cuenta">
                     <option selected>-- Seleccionar --</option>
                     <option value="1">Vista</option>
                     <option value="2">Corriente</option>
                     <option value="3">Ahorro</option>
                 </select>
+                <small id="lbl_cuenta" class="form-text text-danger">Debe seleccionar tipo de cuenta</small>
             </div>
-            <button type="submit" class="btn btn-primary">Limpiar</button>
-            <button type="submit" class="btn btn-primary">Finalizar Registro</button>
-        </form>
+            <button id="btn_limpiar" type="button" class="btn btn-primary">Limpiar</button>
+            <button id="btn_registro" type="button" class="btn btn-primary">Finalizar Registro</button>
+          </form>
+          <label id="lbl_registro"></label>            
+      </div>
     </div>
-    <!--Fin Formulario Login-->
+  </div>
+    <!--Fin Formulario Registro-->
+  </body>
 
+  <!--Inicio JQuery-->
+  
+  <script>
+    // Ocultar etiquetas
+    $("#lbl_rut").css("visibility", "hidden");
+    $("#lbl_nombre").css("visibility", "hidden");
+    $("#lbl_contrasena").css("visibility", "hidden");
+    $("#lbl_apellidop").css("visibility", "hidden");
+    $("#lbl_apellidom").css("visibility", "hidden");
+    $("#lbl_correo").css("visibility", "hidden");
+    $("#lbl_cuenta").css("visibility", "hidden");
+
+    // Validaciones
+    $("#btn_registro").click(function(){
+      rut = $("#txt_rut").val();
+      nombre = $("#txt_nombre").val();   
+      apellidop = $("#txt_apellidop").val();   
+      apellidom = $("#txt_apellidom").val();   
+      correo = $("#txt_correo").val();   
+      cuenta = $("#txt_cuenta").val();
+      validador = true;
+      
+      if(rut == ""){
+        $("#lbl_rut").css("visibility", "visible");
+        $("#txt_rut").css( "border", "3px solid red");
+        validador = false;
+      } else{
+        $("#lbl_rut").css("visibility", "hidden");
+        $("#txt_rut").css( "border", "3px solid green");
+      }
+      
+      if(nombre == ""){
+        $("#lbl_nombre").css("visibility", "visible");
+        $("#txt_nombre").css( "border", "3px solid red");
+        validador = false;
+      } else{        
+        $("#lbl_nombre").css("visibility", "hidden");
+        $("#txt_nombre").css( "border", "3px solid green");
+      }
+      
+      if(apellidop == ""){
+        $("#lbl_apellidop").css("visibility", "visible");
+        $("#txt_apellidop").css( "border", "3px solid red");
+        validador = false;
+      } else{
+        $("#lbl_apellidop").css("visibility", "hidden");
+        $("#txt_apellidop").css( "border", "3px solid green");
+      }
+      
+      if(apellidom == ""){
+        $("#lbl_apellidom").css("visibility", "visible");
+        $("#txt_apellidom").css( "border", "3px solid red");
+        validador = false;
+      } else{
+        $("#lbl_apellidom").css("visibility", "hidden");
+        $("#txt_apellidom").css( "border", "3px solid green");
+      }
+      
+      if(correo == ""){
+        $("#lbl_correo").css("visibility", "visible");
+        $("#txt_correo").css( "border", "3px solid red");
+        validador = false;
+      } else{
+        $("#lbl_correo").css("visibility", "hidden");
+        $("#txt_correo").css( "border", "3px solid green");
+      }
+      
+      if(cuenta == "-- Seleccionar --"){
+        $("#lbl_cuenta").css("visibility", "visible");
+        $("#txt_cuenta").css( "border", "3px solid red");
+        validador = false;
+      } else{
+        $("#lbl_cuenta").css("visibility", "hidden");
+        $("#txt_cuenta").css( "border", "3px solid green");
+      }
+
+      if(validador){
+        $("#lbl_registro").text("Registrado correctamente");
+        $("#lbl_registro").addClass("text-success");
+      } else{
+        $("#lbl_registro").css("visibility", "hidden");
+      }
+    });
+    
+    //Limpiar Formulario
+     $("#btn_limpiar").click(function() {
+     $("#formRegistro")[0].reset();
+    });
+    
+  </script>
 </html>
