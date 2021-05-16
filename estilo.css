@@ -4,14 +4,14 @@
 
 .btn-outline-primary{
     background-color: #bbaddd;
-    border-color:purple;
-    color: purple;
+    border-color:rgb(87, 6, 87);
+    color: rgb(83, 2, 83);
 }
 
 .btn-outline-success{
-    background-color: #a0dfe1;
-    border-color:skyblue;
-    color:skybluey;
+    background-color: #c2a0bd;
+    border-color:rgb(59, 11, 59);
+    color:white;
 }
 .div-carrusel {
     margin: auto;
@@ -24,7 +24,7 @@
 .titulo-bienvenida{
     font-size: 40px;
     text-align: center;
-    color: slateblue;
+    color: rgb(48, 35, 63);
     margin-top: 20px;
 }
 
@@ -38,7 +38,7 @@
     background-color:rgb(213, 209, 235);
     text-align: center;
     font-size: 35px;
-    color: slateblue;
+    color: #4b4380;
     margin: auto;
     width: 500px;
 }
@@ -48,4 +48,15 @@
     margin: auto;
     width: 500px;
     margin-top: 80px;
+}
+
+.btn-primary{
+    background-color: #7caef3;
+    border-color: #7caef3;
+}
+
+
+.page-footer{
+    background-color: #a094eb;
+    color: white;
 }
